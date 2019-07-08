@@ -37,3 +37,21 @@ def BubbleSortStep(array):
             array[i], array[i + 1] = array[i + 1], array[i]
             exchange = False
     return exchange
+
+
+def InsertionSortStep(array, step, i):
+    '''
+    Функция одного шага сортировки вставкой
+    получает на вход массив целых чисел array,
+    размер шага step (>=1) и номер элемента i (i>=0).
+    Выполняется один цикл сортировки с шагом
+    '''
+    if step < 1 and i < 0:
+        return array
+    for i in range(i + step, len(array), step):
+        item_to_insert = array[i]
+        ind = i
+        while ind >= step and array[ind - step] > item_to_insert:
+            array[ind] = array[ind - step]
+            ind -= step
+        array[ind] = item_to_insert
