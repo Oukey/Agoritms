@@ -55,3 +55,16 @@ def InsertionSortStep(array, step, i):
             array[ind] = array[ind - step]
             ind -= step
         array[ind] = item_to_insert
+
+
+def KnuthSequence(array_size):
+    '''Функция вычисления интервальной последовательности целых чисел'''
+    # Первый вариант
+    ind_elem = 0
+    list_step = []
+    while 3 * ind_elem + 1 < array_size:
+        ind_elem = 3 * ind_elem + 1
+        list_step.insert(0, ind_elem)
+    return list_step
+    # Второй вариант - более затратный, зато в одну строчку =)
+    # return [(lambda n: (3 ** n - 1) // 2)(n) for n in reversed(range(1, len_array)) if (3 ** n - 1) // 2 < len_array]
