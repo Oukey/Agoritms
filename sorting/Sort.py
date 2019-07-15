@@ -60,8 +60,8 @@ def InsertionSortStep(array, step, i):
 def KnuthSequence(array_size):
     '''Функция вычисления интервальной последовательности целых чисел'''
     # Первый вариант
-    ind_elem = 0
-    list_step = []
+    ind_elem = 1
+    list_step = [1]
     while 3 * ind_elem + 1 < array_size:
         ind_elem = 3 * ind_elem + 1
         list_step.insert(0, ind_elem)
