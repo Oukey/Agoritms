@@ -68,3 +68,26 @@ def KnuthSequence(array_size):
     return list_step
     # Второй вариант - более затратный, зато в одну строчку =)
     # return [(lambda n: (3 ** n - 1) // 2)(n) for n in reversed(range(1, len_array)) if (3 ** n - 1) // 2 < len_array]
+
+
+def ArrayChunk(Array):
+    '''
+    Функция выполняет разбиение массива на две группы
+    Принимает массив
+    Возвращает индекс опорного элемента
+    '''
+    N = Array[len(Array) // 2]
+    i1, i2 = 0, len(Array) - 1
+    while [i1] <= [i2]:
+        while Array[i1] < N:
+            i1 += 1
+        while Array[i2] > N:
+            i2 -= 1
+        if Array[i1] > Array[i2]:
+            Array[i1], Array[i2] = Array[i2], Array[i1]
+            i1, i2 = 0, len(Array) - 1
+            N = Array[len(Array) // 2]
+            continue
+        if i1 == i2 or i1 == i2 - 1 and Array[i1] < Array[i2]:
+            return len(Array) // 2
+
