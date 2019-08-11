@@ -32,3 +32,15 @@ def QuickSort(array, left, right):
             QuickSort(array, left, N - 1)
         if N <= right - 1:
             QuickSort(array, N + 1, right)
+
+
+def QuickSortTailOptimization(array, left, right):
+    '''Алгоритм разьиения массива с хвостовой рекурсией'''
+    while left < right:
+        N = ArrayChunk(array, left, right)
+        if N - left < right - N:
+            QuickSortTailOptimization(array, left, N - 1)
+            left = N + 1
+        else:
+            QuickSortTailOptimization(array, N + 1, right)
+            right = N - 1
