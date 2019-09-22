@@ -1,3 +1,6 @@
 .pyc
 *.log
 .idea/
+/pics
+./pics
+*.png
