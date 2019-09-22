@@ -35,7 +35,7 @@ def QuickSort(array, left, right):
 
 
 def QuickSortTailOptimization(array, left, right):
-    '''Алгоритм разьиения массива с хвостовой рекурсией'''
+    '''Алгоритм разбиения массива с хвостовой рекурсией'''
     while left < right:
         N = ArrayChunk(array, left, right)
         if N - left < right - N:
@@ -44,3 +44,17 @@ def QuickSortTailOptimization(array, left, right):
         else:
             QuickSortTailOptimization(array, N + 1, right)
             right = N - 1
+
+
+def KthOrderStatisticsStep(A, left, right, k):
+    '''Алгоритм одного шага поиска k-й статистики'''
+    N = ArrayChunk(A, left, right)
+    new_frontiers = []
+    if N < k:
+        left = N
+    else:
+        right = N
+    new_frontiers.append(left)
+    new_frontiers.append(right)
+    return new_frontiers
+
