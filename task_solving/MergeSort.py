@@ -1,11 +1,3 @@
-'''
-1. Расширить класс Heap
-массив HeapArray должен хранить объекты класса HeapItem, состоящий из Key и Value
-Метод Add расширить вторым параметром
-Новый объект класса HeapItem создавать внутри метода Add
-'''
-
-
 class HeapItem:
 
     def __init__(self, key, value):
@@ -117,3 +109,26 @@ class Heap:
         '''Метод обмена значениями двух элементов'''
         self.HeapArray[ind.value], self.HeapArray[parent.value] = self.HeapArray[parent.value], self.HeapArray[
             ind.value]
+
+
+class MergeSort:
+
+    def __init__(self, array):
+        self.MergeHeap = Heap
+        self.CurrentItem = HeapItem
+        self.MergeArray = []
+
+    def merge_sort(self, array):
+        self.MergeArray = array
+        if len(self.MergeArray) <= 1:
+            return self.MergeArray
+        mid = len(self.MergeArray) // 2
+        left_list = self.merge_sort(array[:mid, -1])
+        right_list = self.merge_sort(array[mid:, -1])
+
+
+    def two_wey_Merge_sort(self, array):
+        pass
+
+    def MergeSortStep(self):
+        '''Метод выбирает очередные два значения из подмассивов и помещает их в кучу MergeHeap'''
