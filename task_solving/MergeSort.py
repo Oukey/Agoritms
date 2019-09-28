@@ -117,18 +117,29 @@ class MergeSort:
         self.MergeHeap = Heap
         self.CurrentItem = HeapItem
         self.MergeArray = []
+        self.mid = 0
+        self.i = 0
+        self.j = 0
 
-    def merge_sort(self, array):
+    def MergeSort(self, array):
         self.MergeArray = array
-        if len(self.MergeArray) <= 1:
-            return self.MergeArray
+        self.mid = len(self.MergeArray) // 2
+        self.i = 0
+        self.j = self.mid
+
+        # if len(self.MergeArray) <= 1:
+        #     return self.MergeArray
         mid = len(self.MergeArray) // 2
-        left_list = self.merge_sort(array[:mid, -1])
-        right_list = self.merge_sort(array[mid:, -1])
-
-
-    def two_wey_Merge_sort(self, array):
-        pass
+        left_list = self.MergeSort(self.MergeArray[:mid, -1])
+        right_list = self.MergeSort(self.MergeArray[mid:, -1])
 
     def MergeSortStep(self):
         '''Метод выбирает очередные два значения из подмассивов и помещает их в кучу MergeHeap'''
+        if self.i < self.mid:
+            self.MergeHeap.Add(self.MergeArray[self.i + 1], 1)
+        if self.j < len(self.MergeArray):
+            self.MergeHeap.Add(self.MergeArray[self.j + 1], 2)
+        if self.MergeHeap.Len() > 0:
+            self.CurrentItem = self.MergeHeap.GetMax()
+        else:
+            self.CurrentItem = None
