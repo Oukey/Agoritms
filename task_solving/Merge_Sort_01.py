@@ -22,8 +22,8 @@ def Merge(left_list, right_list):
     for _ in range(len_left_list + len_right_list):
         if left_index < len_left_list and right_index < len_right_list:
             # Проверка наименьшего значения в начале каждого списка
-            # if left_list[left_index] <= right_list[right_index]:  # по возрастанию
-            if left_list[left_index] >= right_list[right_index]:  # по убыванию
+            if left_list[left_index] <= right_list[right_index]:  # по возрастанию
+            # if left_list[left_index] >= right_list[right_index]:  # по убыванию
                 sorted_list.append(left_list[left_index])
                 left_index += 1
             else:
@@ -41,7 +41,7 @@ def Merge(left_list, right_list):
 
 
 # Проверка работоспособности
-# array = [120, 45, 68.9, 250, -176]
-# array = MergeSort(array)
-# print(array)
+array = [120, 45, 68.9, 250, -176]
+array = MergeSort(array)
+print(array)
 # [-176, 45, 68.9, 120, 250]
