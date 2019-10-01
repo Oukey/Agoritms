@@ -42,9 +42,12 @@ class Heap:
                 self.HeapArray = []
             return max_elem
 
-    def Len(self, array):
+    # def Len(self, array):
+    def Len(self):
         '''Метод возврата количества элементов в куче'''
-        return len(self.HeapArray)
+        # return len(self.HeapArray)
+        # или
+        return self.HeapSize
         # или
         # return self.Get_size_depth(arrey)[1]
 
@@ -114,32 +117,86 @@ class Heap:
 class MergeSort:
 
     def __init__(self, array):
+        self.MergeArray = array
         self.MergeHeap = Heap
         self.CurrentItem = HeapItem
-        self.MergeArray = []
-        self.mid = 0
-        self.i = 0
-        self.j = 0
-
-    def MergeSort(self, array):
-        self.MergeArray = array
         self.mid = len(self.MergeArray) // 2
-        self.i = 0
-        self.j = self.mid
 
-        # if len(self.MergeArray) <= 1:
-        #     return self.MergeArray
-        mid = len(self.MergeArray) // 2
-        left_list = self.MergeSort(self.MergeArray[:mid, -1])
-        right_list = self.MergeSort(self.MergeArray[mid:, -1])
+    def Merge(self):
+        # mid = len(self.MergeArray) // 2
+        # сортировка и объединение каждой половины
+        first_list = sorted(self.MergeArray[:self.mid], reverse=True)
+        second_list = sorted(self.MergeArray[self.mid:], reverse=True)
+        self.MergeArray = first_list + second_list
 
     def MergeSortStep(self):
-        '''Метод выбирает очередные два значения из подмассивов и помещает их в кучу MergeHeap'''
-        if self.i < self.mid:
-            self.MergeHeap.Add(self.MergeArray[self.i + 1], 1)
-        if self.j < len(self.MergeArray):
-            self.MergeHeap.Add(self.MergeArray[self.j + 1], 2)
+        f_ind = 0
+        s_ind = self.mid
+        len_array = len(self.MergeArray)
+        if f_ind < self.mid and s_ind < len_array:
+            self.MergeHeap.Add(1, self.MergeArray[f_ind])
+            self.MergeHeap.Add(2, self.MergeArray[s_ind])
+            f_ind += 1
+            s_ind += 1
+
+        elif s_ind == len_array and f_ind < self.mid:
+            self.CurrentItem = HeapItem(1, self.MergeArray[f_ind])
+            f_ind += 1
+
+        elif s_ind < len_array and f_ind == self.mid:
+            self.CurrentItem = HeapItem(1, self.MergeArray[s_ind])
+            s_ind += 1
+
+        if s_ind < len(self.MergeArray):
+            self.MergeHeap.Add(self.MergeArray[s_ind], 2)
+
         if self.MergeHeap.Len() > 0:
             self.CurrentItem = self.MergeHeap.GetMax()
         else:
             self.CurrentItem = None
+
+    def merge(self, left_list, right_list):
+        ''' Метод слияния. Принимает массив/список. Возвращает два массива/списка '''
+        sorted_list = []
+        left_ind = right_ind = 0
+        len_left_list, len_right_list = len(left_list), len(right_list)
+        for _ in range(len_left_list + len_right_list):
+            if left_ind < len_left_list and right_ind < len_right_list:
+                # Проверка наименьшего значения в начале каждого списка
+                if left_list[left_ind] >= right_list[right_ind]:  # по убыванию, если <= будет по возрастанию
+                    sorted_list.append(left_list[left_ind])
+                    left_ind += 1
+                else:
+                    sorted_list.append(right_list[right_ind])
+                    right_ind += 1
+            # Если достигли конца левого списка, добавляем элементы из правого списка
+            elif left_ind == len_left_list:
+                sorted_list.append(right_list[right_ind])
+                right_ind += 1
+            # Если достигли конца правого списка, добавляем элементы из левого списка
+            elif right_ind == len_right_list:
+                sorted_list.append(left_list[left_ind])
+                left_ind += 1
+            # Если закончились оба списка, добавляем None
+            elif left_ind == len_left_list and right_ind == len_right_list:
+                sorted_list.append(None)
+        return sorted_list
+
+    def merge_sort(self, array):
+        ''' Метод сортировки слиянием. Принимает массив/список. Возвращает два массива/списка '''
+        # Если состоит из одного элумента, возвращаем его
+        if len(array) <= 1:
+            return array
+        mid = len(array) // 2
+        # сортировка и объединение каждой половины
+        left_list = self.merge_sort(array[:mid])
+        right_list = self.merge_sort(array[mid:])
+        # Объединение отсортированных списков в новый
+        return self.merge(left_list, right_list)
+
+
+# ПРоверка работоспособности
+ar = [4, 3, 5, 2, 6, 1, 7]
+sorting = MergeSort(ar)
+ar = sorting.merge_sort(ar)
+print(ar)
