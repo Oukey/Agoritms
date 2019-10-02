@@ -41,7 +41,7 @@ def Merge(left_list, right_list):
 
 
 # Проверка работоспособности
-array = [120, 45, 68.9, 250, -176]
-array = MergeSort(array)
-print(array)
+# array = [120, 45, 68.9, 250, -176]
+# array = MergeSort(array)
+# print(array)
 # [-176, 45, 68.9, 120, 250]
