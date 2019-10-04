@@ -1,15 +1,27 @@
 class HeapSort:
 
-    def __init__(self):
+    def __init__(self, array, depth=None):
+    # def __init__(self):
         self.HeapObject = Heap()
-
-    def HeapSort(self, array, depth=None):
         self.HeapObject.MakeHeap(array, depth)
         for el in array:
             self.HeapObject.Add(el)
 
+
+    # def HeapSort(self, array, depth=None):
+    # def HeapSort(self, array):
+    #     # self.HeapObject.MakeHeap(array, depth)
+    #     for el in array:
+    #         self.HeapObject.Add(el)
+
     def GetNextMax(self):
-        return self.HeapObject.GetMax()
+        '''
+        Метод возврата корня (максимального значения) с дальнейшей перестройкой кучи
+        Возвращает значение корня или -1 если куча пуста
+        '''
+        # return self.HeapObject.GetMax()
+        if not self.HeapObject.HeapArray:
+            return - 1
 
 
 class Heap:
@@ -79,16 +91,17 @@ class Heap:
         Метод возврата корня (максимального значения) с дальнейшей перестройкой кучи
         Возвращает значение корня или -1 если куча пуста
         '''
-        if len(self.HeapArray) == 0:
+        # if len(self.HeapArray) == 0:
+        if not self.HeapArray:
             return - 1
-        else:
-            max_elem = self.HeapArray[0]
-            if len(self.HeapArray) > 1:
-                self.HeapArray[0] = self.HeapArray.pop(-1)
-                self.sift_down()
-            elif len(self.HeapArray) == 1:
-                self.HeapArray = []
-            return max_elem
+
+        max_elem = self.HeapArray[0]
+        if len(self.HeapArray) > 1:
+            self.HeapArray[0] = self.HeapArray.pop(-1)
+            self.sift_down()
+        elif len(self.HeapArray) == 1:
+            self.HeapArray = []
+        return max_elem
 
     def sift_down(self):
         '''Метод просеивания вниз'''
@@ -108,38 +121,36 @@ class Heap:
 
 
 # Пример
-ar = [5, 4, 6, 7, 3, 8, 2, 9, 1, 10, 0]
+# ar = [5, 4, 6, 7, 3, 8, 2, 9, 1, 10]
+ar = [5, 4, 6, 7]
 
-hs = HeapSort()
-print(hs.HeapObject)
-print(hs.HeapObject.HeapArray)
-print(hs.HeapObject.HeapSize)
 
-ar1 = []
-for i in ar:
-    ar1.append(i)
-
-print(ar1)
-
-HS = HeapSort()
-HS.HeapSort(ar)
+HS = HeapSort(ar)
+# HS.HeapSort(ar)
 # while i < len(ar):
 #     print(HS.GetNextMax())
 #     i += 1
+for i in range(len(HS.HeapObject.HeapArray)):
+    print(HS.GetNextMax())
+print(HS.GetNextMax())
+# print(HS.GetNextMax())
+# print(HS.GetNextMax())
+# print(HS.GetNextMax())
+# print(HS.GetNextMax())
+# print(HS.GetNextMax())
+# print(HS.GetNextMax())
+# print(HS.GetNextMax())
+# print(HS.GetNextMax())
+# print(HS.GetNextMax())
+# print(HS.GetNextMax())
+# print(HS.GetNextMax())
+# print(HS.GetNextMax())
+# print(HS.GetNextMax())
+# print(HS.GetNextMax())
 
-print(HS.GetNextMax())
-print(HS.GetNextMax())
-print(HS.GetNextMax())
-print(HS.GetNextMax())
-print(HS.GetNextMax())
-print(HS.GetNextMax())
-print(HS.GetNextMax())
-print(HS.GetNextMax())
-print(HS.GetNextMax())
-print(HS.GetNextMax())
-print(HS.GetNextMax())
-print(HS.GetNextMax())
-print(HS.GetNextMax())
-print(HS.GetNextMax())
-print(HS.GetNextMax())
-print(HS.GetNextMax())
+print('0' * 60)
+ss = Heap()
+a = [3, 1, 2, 0]
+ss.MakeHeap(ar)
+for i in range(ss.HeapSize):
+    print(ss.GetMax())
