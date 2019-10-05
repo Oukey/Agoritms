@@ -200,3 +200,7 @@ ar = [4, 3, 5, 2, 6, 1, 7]
 sorting = MergeSort(ar)
 ar = sorting.merge_sort(ar)
 print(ar)
+
+heap = Heap()
+print(heap.HeapSize)
+print(heap.GetMax())

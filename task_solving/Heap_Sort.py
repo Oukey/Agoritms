@@ -1,27 +1,19 @@
 class HeapSort:
+    '''Класс для выполнения задания Heap-Sort'''
 
-    def __init__(self, array, depth=None):
-    # def __init__(self):
+    def __init__(self):
         self.HeapObject = Heap()
-        self.HeapObject.MakeHeap(array, depth)
-        for el in array:
-            self.HeapObject.Add(el)
 
-
-    # def HeapSort(self, array, depth=None):
-    # def HeapSort(self, array):
-    #     # self.HeapObject.MakeHeap(array, depth)
-    #     for el in array:
-    #         self.HeapObject.Add(el)
+    def HeapSort(self, array):
+        '''Метод получает в качестве параметра массив и загружает их в кучу HeapObject'''
+        self.HeapObject.MakeHeap(array)
 
     def GetNextMax(self):
         '''
         Метод возврата корня (максимального значения) с дальнейшей перестройкой кучи
         Возвращает значение корня или -1 если куча пуста
         '''
-        # return self.HeapObject.GetMax()
-        if not self.HeapObject.HeapArray:
-            return - 1
+        return self.HeapObject.GetMax()
 
 
 class Heap:
@@ -119,38 +111,14 @@ class Heap:
             else:
                 break
 
-
-# Пример
-# ar = [5, 4, 6, 7, 3, 8, 2, 9, 1, 10]
-ar = [5, 4, 6, 7]
-
-
-HS = HeapSort(ar)
-# HS.HeapSort(ar)
-# while i < len(ar):
-#     print(HS.GetNextMax())
-#     i += 1
-for i in range(len(HS.HeapObject.HeapArray)):
-    print(HS.GetNextMax())
-print(HS.GetNextMax())
-# print(HS.GetNextMax())
-# print(HS.GetNextMax())
-# print(HS.GetNextMax())
-# print(HS.GetNextMax())
-# print(HS.GetNextMax())
-# print(HS.GetNextMax())
-# print(HS.GetNextMax())
-# print(HS.GetNextMax())
-# print(HS.GetNextMax())
-# print(HS.GetNextMax())
-# print(HS.GetNextMax())
-# print(HS.GetNextMax())
-# print(HS.GetNextMax())
-# print(HS.GetNextMax())
-
-print('0' * 60)
-ss = Heap()
-a = [3, 1, 2, 0]
-ss.MakeHeap(ar)
-for i in range(ss.HeapSize):
-    print(ss.GetMax())
+# Проверка
+# ar = [5, 4, 6, 3, 7, 2, 8, 1, 9, 0, 10, -1]
+# h = Heap()
+# h.MakeHeap(ar)
+# print(h.HeapArray)
+#
+# h1 = HeapSort()
+# h1.HeapSort(ar)
+# print(h1.HeapObject.HeapArray)
+# print(h1.GetNextMax())
+# print(h1.HeapObject.HeapArray)
