@@ -1,12 +1,14 @@
 class HeapSort:
     '''Класс для выполнения задания Heap-Sort'''
 
-    def __init__(self):
+    def __init__(self, array, depth=None):
         self.HeapObject = Heap()
+        self.HeapObject.MakeHeap(array, depth)
 
     def HeapSort(self, array, depth=None):
         '''Метод получает в качестве параметра массив и загружает их в кучу HeapObject'''
-        self.HeapObject.MakeHeap(array, depth)
+        # self.HeapObject.MakeHeap(array, depth)
+        pass
 
     def GetNextMax(self):
         '''
@@ -111,15 +113,14 @@ class Heap:
             else:
                 break
 
-
 # Проверка
-# ar = [5, 4, 6, 3, 7, 2, 8, 1, 9, 0, 10, -1]
-# h = Heap()
-# h.MakeHeap(ar)
-# print(h.HeapArray)
-#
-# h1 = HeapSort()
+ar = [5, 4, 6, 3, 7, 2, 8, 1, 9, 0, 10, -1]
+h = Heap()
+h.MakeHeap(ar)
+print(h.HeapArray)
+
+h1 = HeapSort(ar)
 # h1.HeapSort(ar, 20)
-# print(h1.HeapObject.HeapArray)
-# print(h1.GetNextMax())
-# print(h1.HeapObject.HeapArray)
+print(h1.HeapObject.HeapArray)
+print(h1.GetNextMax())
+print(h1.HeapObject.HeapArray)

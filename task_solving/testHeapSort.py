@@ -5,8 +5,7 @@ import Heap_Sort as H
 class HeapSortTest(unittest.TestCase):
 
     def test_01(self):
-        hs = H.HeapSort()
-        hs.HeapSort([5, 4, 6, 3, 7, 2, 8, 9, 1])
+        hs = H.HeapSort([5, 4, 6, 3, 7, 2, 8, 9, 1])
         self.assertEqual(9, len(hs.HeapObject.HeapArray))
         self.assertEqual(9, hs.GetNextMax())
         self.assertEqual(8, len(hs.HeapObject.HeapArray))
