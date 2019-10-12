@@ -24,11 +24,13 @@ class ksort:
 
     def get_hash(self, s):
         '''Дополнительный метод нахождения индекса для строки'''
-        ind_s = ord(s[0]) - 97 + int(s[1]) * 10 + int(s[2])
+        # ind_s = ord(s[0]) - 97 + int(s[1]) * 10 + int(s[2])
+        ind_s = (ord(s[0]) - 97) * 100 + int(s[1] + s[2])
         return ind_s
 
     def validation_check(self, s):
         '''Дополнительный метод проверки корректности строки'''
+        s = str(s)
         if len(s) == 3:
             if ord(s[0]) in range(97, 104 + 1):
                 if int(s[1:2]) in range(0, 99 + 1):
