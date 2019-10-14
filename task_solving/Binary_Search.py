@@ -10,16 +10,18 @@ class BinarySearch:
     def Step(self, N):
         '''Метод выполнения одного шага поиска. Прнимает искомое число (int)'''
         step = (self.Left + self.Right + 1) // 2
+        if N > self.array[step]:  # Если элемент больше среднего в диапазоне
+            self.Left = step
+        if N < self.array[step]:  # Если элемент меньше среднего в диапазоне
+            self.Right = step
+            if self.Left == 0 and self.Right == 1:
+                # self.Right = self.Left
+                self.Right = step = self.Left
+                # step = self.Left
         if N == self.array[step]:  # Если элемент найден
             self.result = 1
-            # self.Left, self.Right = step
-        if N > self.array[step]:  # Если элемент больше среднего в диапазоне
-            # self.Left = step
-            self.Left = step - 1
-        if N < self.array[step]:  # Если элемент меньше среднего в диапазоне
-            # self.Right = step
-            self.Right = step + 1
-        if self.Left == self.Right:  # Если элемент не найден
+            self.Left = self.Right = step  # Нужно ли менять граници при найденном елементе?
+        if self.Left == self.Right and step != N:  # Если элемент не найден
             self.result = -1
 
     def GetResult(self):
@@ -28,7 +30,7 @@ class BinarySearch:
 
 array = [num for num in range(0, 11)]
 print(array)
-N = 8
+N = -1
 BS = BinarySearch(array)
 
 while BS.result == 0:
