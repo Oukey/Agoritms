@@ -36,15 +36,28 @@ def GallopingSearch(array, data):
     '''
     array = sorted(array)
     i = 1
-    ind = 2 ** (i - 2)
-    if array[ind] == data:
+    while ind_calc(i) < len(array) - 1:
+        ind = int(ind_calc(i))
+        if array[ind] == data:
+            return True
+        if array[ind] < data:
+            i += 1
+        else:
+            break
+    # Если элемент массива с расчетным индексом больше искомого значения data
+    BS = BinarySearch(array)
+    if ind_calc(i) >= len(array):
+        BS.Right = len(array) - 1
+    else:
+        BS.Right = int(ind_calc(i))
+    while BS.GetResult() == 0:
+        BS.Step(data)
+    if BS.GetResult() == 1:
         return True
-    elif array[ind] < data:
-        i = 2
-        if ind < len(array) - 1:
-            if array[ind] == data:
-                return True
-            else:
-                ind = len(array) - 1
+    else:
+        return False
 
 
+def ind_calc(i):
+    '''Функция расчета повышения индекса'''
+    return 2 ** (i - 2)
